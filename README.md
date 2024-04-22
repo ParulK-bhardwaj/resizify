@@ -1,0 +1,1 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/ParulK-bhardwaj/resizify)](https://goreportcard.com/report/github.com/ParulK-bhardwaj/resizify)
