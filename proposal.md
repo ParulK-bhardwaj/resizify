@@ -13,7 +13,7 @@ In web development and digital content management, images are essential but can 
 - Easy-to-Use Interface: Simple command-line interface for quick operations, with potential for a graphical interface in future versions.
 - Might add more later
 
-### Audience
+## Audience
 - Web designer/developers
 - Digital Marketers 
 - Small Businesses
@@ -25,6 +25,5 @@ In web development and digital content management, images are essential but can 
 - Resource Optimization: Helps in optimizing images for web use, leading to faster page load times and improved SEO performance.
 
 ## Used Existing Libraries
-- 
 
-## Conclusion
+## Conclusions
