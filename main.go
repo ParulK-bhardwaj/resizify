@@ -23,9 +23,10 @@ type ResizeParams struct {
 }
 
 // ImageProcessingResult holds filepath and error
+// omitempty: is used here to omit empty errors
 type ImageProcessingResult struct {
 	FilePath string `json:"file_path"`
-	Error    string `json:"error"`
+	Error    string `json:"error,omitempty"`
 }
 
 // resizeImage resizes an image to the specified width and height
@@ -125,6 +126,7 @@ func main() {
 	}
 
 	// successes to successes.json JSON file
+	// 0644: file permission used when creating file
 	successFile, _ := json.MarshalIndent(successes, "", "  ")
 	_ = os.WriteFile("successes.json", successFile, 0644)
 

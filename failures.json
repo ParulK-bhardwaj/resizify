@@ -1,34 +1,34 @@
 [
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/background-spice-box.jpg",
+    "file_path": "images/background-spice-box.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/bafauri.jpg",
+    "file_path": "images/bafauri.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/laal-maas-actual.jpg",
+    "file_path": "images/laal-maas-actual.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/masor-tenga-actual.jpg",
+    "file_path": "images/masor-tenga-actual.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/mysore-masala-dosa.jpg",
+    "file_path": "images/mysore-masala-dosa.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/poha.jpg",
+    "file_path": "images/poha.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/rista.jpg",
+    "file_path": "images/rista.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "/Users/parulbhardwaj/Desktop/ACS-4210-strongly-typed-language-golang/resizify/images/thali.jpg",
+    "file_path": "images/thali.jpg",
     "error": "image: unknown format"
   }
 ]
