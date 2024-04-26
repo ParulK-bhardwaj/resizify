@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"image"
@@ -21,6 +22,12 @@ type ResizeParams struct {
 	height uint
 }
 
+// ImageProcessingResult holds filepath and error
+type ImageProcessingResult struct {
+	FilePath string `json:"file_path"`
+	Error    string `json:"error"`
+}
+
 // resizeImage resizes an image to the specified width and height
 // https://spec.oneapi.io/oneipl/0.5/transform/resize_lanczos.html
 // This function changes an image size using interpolation with the Lanczos filter.
@@ -29,23 +36,24 @@ func resizeImage(img image.Image, params ResizeParams) image.Image {
 }
 
 // processImage opens, resizes, and saves the image
-func processImage(filePath string, params ResizeParams) error {
+func processImage(filePath string, params ResizeParams) (ImageProcessingResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
-		return err
+		return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
 	}
 	defer file.Close()
 
 	img, format, err := image.Decode(file)
 	if err != nil {
-		return err
+		return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
 	}
 
 	resizedImg := resizeImage(img, params)
 
 	outputFile, err := os.Create(filePath)
 	if err != nil {
-		return err
+		return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
+
 	}
 	defer outputFile.Close()
 
@@ -57,14 +65,18 @@ func processImage(filePath string, params ResizeParams) error {
 	case "gif":
 		gif.Encode(outputFile, resizedImg, nil)
 	default:
-		return fmt.Errorf("unsupported image format")
+		errorMsg := fmt.Errorf("unsupported image format")
+		return ImageProcessingResult{FilePath: filePath, Error: errorMsg.Error()}, errorMsg
+
 	}
-	return nil
+	return ImageProcessingResult{FilePath: filePath}, nil
 }
 
 func main() {
 	path := flag.String("path", "", "Path to the images directory")
+	// default 800
 	width := flag.String("width", "800", "Width to resize images to")
+	// default 600
 	height := flag.String("height", "600", "Height to resize images to")
 
 	flag.Parse()
@@ -89,15 +101,19 @@ func main() {
 
 	params := ResizeParams{width: uint(widthUint), height: uint(heightUint)}
 
+	var successes, failures []ImageProcessingResult
 	err = filepath.Walk(*path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			return err
+			failures = append(failures, ImageProcessingResult{FilePath: path, Error: err.Error()})
+			return nil
 		}
 		if !info.IsDir() {
-			err = processImage(path, params)
+			result, err := processImage(path, params)
 			if err != nil {
+				failures = append(failures, result)
 				fmt.Printf("%sFailed to process image %s%s: %s%v%s\n", chalk.Red, chalk.Reset, path, chalk.Yellow, err, chalk.Reset)
 			} else {
+				successes = append(successes, result)
 				fmt.Printf("%sProcessed image successfully %s%v%s\n", chalk.Green, chalk.Reset, path, chalk.Reset)
 			}
 		}
@@ -107,4 +123,14 @@ func main() {
 	if err != nil {
 		fmt.Printf("Error processing images: %v\n", err)
 	}
+
+	// successes to successes.json JSON file
+	successFile, _ := json.MarshalIndent(successes, "", "  ")
+	_ = os.WriteFile("successes.json", successFile, 0644)
+
+	// failures to a failures.json JSON file
+	failureFile, _ := json.MarshalIndent(failures, "", "  ")
+	_ = os.WriteFile("failures.json", failureFile, 0644)
+
+	fmt.Println(chalk.Blue, "Image processing complete. Results saved to successes.json and failures.json.")
 }
