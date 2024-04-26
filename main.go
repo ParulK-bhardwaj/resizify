@@ -12,6 +12,7 @@ import (
 	"strconv"
 
 	"github.com/nfnt/resize"
+	"github.com/ttacon/chalk"
 )
 
 // ResizeParams holds parameters for resizing images
@@ -95,9 +96,9 @@ func main() {
 		if !info.IsDir() {
 			err = processImage(path, params)
 			if err != nil {
-				fmt.Printf("Failed to process image %s: %v\n", path, err)
+				fmt.Printf("%sFailed to process image %s: %v%s\n", chalk.Red, path, err, chalk.Reset)
 			} else {
-				fmt.Printf("Processed image %s successfully\n", path)
+				fmt.Printf("%sProcessed image %s successfully%s\n", chalk.Green, path, chalk.Reset)
 			}
 		}
 		return nil
