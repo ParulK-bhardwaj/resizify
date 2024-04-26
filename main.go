@@ -96,9 +96,9 @@ func main() {
 		if !info.IsDir() {
 			err = processImage(path, params)
 			if err != nil {
-				fmt.Printf("%sFailed to process image %s: %v%s\n", chalk.Red, path, err, chalk.Reset)
+				fmt.Printf("%sFailed to process image %s%s: %s%v%s\n", chalk.Red, chalk.Reset, path, chalk.Yellow, err, chalk.Reset)
 			} else {
-				fmt.Printf("%sProcessed image %s successfully%s\n", chalk.Green, path, chalk.Reset)
+				fmt.Printf("%sProcessed image successfully %s%v%s\n", chalk.Green, chalk.Reset, path, chalk.Reset)
 			}
 		}
 		return nil
