@@ -11,7 +11,6 @@ In web development and digital content management, images are essential but can 
 - Batch Processing: Resize hundreds of images in one go, saving time and effort.
 - Support for Multiple Formats: Compatible with popular image formats such as JPEG, PNG, and GIF.
 - Easy-to-Use Interface: Simple command-line interface for quick operations, with potential for a graphical interface in future versions.
-- Might add more later
 
 ## Audience
 - Web designer/developers
@@ -25,13 +24,15 @@ In web development and digital content management, images are essential but can 
 - Resource Optimization: Helps in optimizing images for web use, leading to faster page load times and improved SEO performance.
 
 ## Used Existing Libraries
-- fmt : Package fmt used to format I/O with functions analogous to C's printf and scanf. Helps in printing and formatting success or failure messages.
-- os : provides a platform-independent interface to operating system functionality. Used for opening and creating files and handling command line arguments.
-- image : To decode and encode images in GIF, JPEG, PNG formats.
+- encoding/json: Package encoding/json provides support for encoding and decoding JSON data.
+- flag: provides command line parsing.
+- fmt: Package fmt used to format I/O with functions analogous to C's printf and scanf. Helps in printing and formatting success or failure messages.
+- os: provides a platform-independent interface to operating system functionality. Used for opening and creating files and handling command line arguments.
+- image: To decode and encode images in GIF, JPEG, PNG formats.
 - path/filepath: To iterate over files in a directory
 - strconv: To convert str to integer for command line arguments for width and height
 
+
 ### Third-party package:
 - "github.com/nfnt/resize": To resize an image to the specified width and height. Resize supports many interpolation methods. We used resize.Lanczos3, which is well-regarded for producing high-quality resized images.
-
-## Conclusions
+- "github.com/ttacon/chalk": To prettify and make the CLI output easy to navigate and read.
