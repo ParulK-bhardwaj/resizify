@@ -127,7 +127,7 @@ func main() {
 	width := flag.String("width", "600", "Width to resize images to")
 	// default 800
 	height := flag.String("height", "800", "Height to resize images to")
-	// default 700
+	// default 0 : Make compression optional
 	size := flag.Int("size", 0, "Maximum size of the image in KB")
 	flag.Parse()
 
