@@ -3,7 +3,7 @@
 # Resizify - Bulk Image Resizer Utility
 
 ## Description
-Resizify is a command-line utility designed to simplify the process of resizing images in bulk. It takes a directory containing images as input, resizes each image to the specified dimensions, and saves the resized images back to the original directory.
+Resizify is a command-line utility designed to simplify the process of resizing images in bulk. It takes a directory containing images as input, resizes each image to the specified dimensions, and saves the resized images to a new directory.
 
 ## Features
 - Bulk Image Resizing: Resizify allows you to resize multiple images at once, saving you time and effort.
@@ -38,14 +38,24 @@ go build -o resizify
 ## Usage
 
 ```go
-go run main.go -path [path_to_images] -width [width] -height [height]
+go run main.go -path [path_to_images] -width [width] -height [height] -size[max_size_in_kb]
 ```
 
 ## Test the Utility
-- To test this program you can use the images directory that has few sample images.
-- Sample command: 
+To test this program you can use the images directory that has few sample images.
+- To Only resize the images command: 
 ```go
 go run main.go -path images -width 600 -height 800
+```
+
+- To only compress the images command:
+```go
+go run main.go -path images -size 2000
+```
+
+- To do both resize and compress:
+```go
+go run main.go -path images -width 600 -height 800 -size 800
 ```
 
 ## Example Output in CLI
@@ -62,6 +72,7 @@ Processed image successfully images/vindaloo.jpeg
 
 <img width="699" alt="image" src="https://github.com/ParulK-bhardwaj/resizify/assets/111934039/a4882d77-8f45-42e2-a47f-91453f3d5116">
 
-<img width="444" alt="image" src="https://github.com/ParulK-bhardwaj/resizify/assets/111934039/dc805045-2f81-4822-977a-193e5299214c">
+<img width="579" alt="image" src="https://github.com/ParulK-bhardwaj/resizify/assets/111934039/3868dc12-a7b1-42ad-bc4e-d72f5dadd54c">
 
-<img width="374" alt="image" src="https://github.com/ParulK-bhardwaj/resizify/assets/111934039/e94c35ee-4543-4ece-9f1b-140914d036d1">
+<img width="667" alt="image" src="https://github.com/ParulK-bhardwaj/resizify/assets/111934039/ea914bc7-26fa-4f83-aef2-fdb9ae565d10">
+
