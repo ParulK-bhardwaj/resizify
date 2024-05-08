@@ -1,104 +1,142 @@
 [
   {
-    "file_path": "images/andhra-chicken-curry.jpg"
+    "file_path": "processed_images/andhra-chicken-curry.jpg",
+    "file_size_kb": 68
   },
   {
-    "file_path": "images/background.jpeg"
+    "file_path": "processed_images/background.jpeg",
+    "file_size_kb": 618
   },
   {
-    "file_path": "images/background.jpg"
+    "file_path": "processed_images/background.jpg",
+    "file_size_kb": 63
   },
   {
-    "file_path": "images/butter-chicken-actual.jpg"
+    "file_path": "processed_images/butter-chicken-actual.jpg",
+    "file_size_kb": 67
   },
   {
-    "file_path": "images/butter-chicken.jpeg"
+    "file_path": "processed_images/butter-chicken.jpeg",
+    "file_size_kb": 67
   },
   {
-    "file_path": "images/chhole-bhature.-actualjpg.jpg"
+    "file_path": "processed_images/chhole-bhature.-actualjpg.jpg",
+    "file_size_kb": 71
   },
   {
-    "file_path": "images/chhole-bhature.jpeg"
+    "file_path": "processed_images/chhole-bhature.jpeg",
+    "file_size_kb": 72
   },
   {
-    "file_path": "images/dal-bati-actual.jpeg"
+    "file_path": "processed_images/dal-bati-actual.jpeg",
+    "file_size_kb": 77
   },
   {
-    "file_path": "images/dal-bati.jpeg"
+    "file_path": "processed_images/dal-bati.jpeg",
+    "file_size_kb": 77
   },
   {
-    "file_path": "images/dhokla-actual.jpg"
+    "file_path": "processed_images/dhokla-actual.jpg",
+    "file_size_kb": 62
   },
   {
-    "file_path": "images/dhokla.jpeg"
+    "file_path": "processed_images/dhokla.jpeg",
+    "file_size_kb": 62
   },
   {
-    "file_path": "images/dhuska.jpg"
+    "file_path": "processed_images/dhuska.jpg",
+    "file_size_kb": 59
   },
   {
-    "file_path": "images/eromba-actual.jpg"
+    "file_path": "processed_images/eromba-actual.jpg",
+    "file_size_kb": 63
   },
   {
-    "file_path": "images/eromba.jpeg"
+    "file_path": "processed_images/eromba.jpeg",
+    "file_size_kb": 63
   },
   {
-    "file_path": "images/hyderabadi-biryani.jpg"
+    "file_path": "processed_images/hyderabadi-biryani.jpg",
+    "file_size_kb": 69
   },
   {
-    "file_path": "images/idli-actual.jpg"
+    "file_path": "processed_images/idli-actual.jpg",
+    "file_size_kb": 68
   },
   {
-    "file_path": "images/idli.jpeg"
+    "file_path": "processed_images/idli.jpeg",
+    "file_size_kb": 68
   },
   {
-    "file_path": "images/laal-maas.jpeg"
+    "file_path": "processed_images/laal-maas.jpeg",
+    "file_size_kb": 51
   },
   {
-    "file_path": "images/lal-maas-another.jpg"
+    "file_path": "processed_images/lal-maas-another.jpg",
+    "file_size_kb": 67
   },
   {
-    "file_path": "images/litti-chokha.jpeg"
+    "file_path": "processed_images/litti-chokha.jpeg",
+    "file_size_kb": 53
   },
   {
-    "file_path": "images/logo-black.png"
+    "file_path": "processed_images/logo-black.png",
+    "file_size_kb": 102
   },
   {
-    "file_path": "images/madra.jpg"
+    "file_path": "processed_images/madra.jpg",
+    "file_size_kb": 50
   },
   {
-    "file_path": "images/masor-tenga.jpeg"
+    "file_path": "processed_images/masor-tenga.jpeg",
+    "file_size_kb": 79
   },
   {
-    "file_path": "images/rogan-josh.-actualjpg.jpg"
+    "file_path": "processed_images/parulk-bhardwaj.github.io_Thali-React-Project_.png",
+    "file_size_kb": 635
   },
   {
-    "file_path": "images/rogan-josh.jpeg"
+    "file_path": "processed_images/rogan-josh.-actualjpg.jpg",
+    "file_size_kb": 70
   },
   {
-    "file_path": "images/sadya-actual.jpg"
+    "file_path": "processed_images/rogan-josh.jpeg",
+    "file_size_kb": 69
   },
   {
-    "file_path": "images/sadya.jpeg"
+    "file_path": "processed_images/sadya-actual.jpg",
+    "file_size_kb": 77
   },
   {
-    "file_path": "images/thali copy.jpg"
+    "file_path": "processed_images/sadya.jpeg",
+    "file_size_kb": 76
   },
   {
-    "file_path": "images/thukpa-actual.jpg"
+    "file_path": "processed_images/thali copy.jpg",
+    "file_size_kb": 71
   },
   {
-    "file_path": "images/thukpa.jpeg"
+    "file_path": "processed_images/thukpa-actual.jpg",
+    "file_size_kb": 682
   },
   {
-    "file_path": "images/vada-paav-actual.jpg"
+    "file_path": "processed_images/thukpa.jpeg",
+    "file_size_kb": 73
   },
   {
-    "file_path": "images/vada-pav.jpeg"
+    "file_path": "processed_images/vada-paav-actual.jpg",
+    "file_size_kb": 48
   },
   {
-    "file_path": "images/vindaloo-actual.jpg"
+    "file_path": "processed_images/vada-pav.jpeg",
+    "file_size_kb": 49
   },
   {
-    "file_path": "images/vindaloo.jpeg"
+    "file_path": "processed_images/vindaloo-actual.jpg",
+    "file_size_kb": 62
+  },
+  {
+    "file_path": "processed_images/vindaloo.jpeg",
+    "file_size_kb": 62
   }
 ]

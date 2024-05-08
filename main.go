@@ -22,10 +22,11 @@ type ResizeParams struct {
 	height uint
 }
 
-// ImageProcessingResult holds filepath and error
+// ImageProcessingResult holds filepath, file size, and error
 // omitempty: is used here to omit empty errors
 type ImageProcessingResult struct {
 	FilePath string `json:"file_path"`
+	FileSize int64  `json:"file_size_kb,omitempty"`
 	Error    string `json:"error,omitempty"`
 }
 
@@ -36,41 +37,88 @@ func resizeImage(img image.Image, params ResizeParams) image.Image {
 	return resize.Resize(params.width, params.height, img, resize.Lanczos3)
 }
 
-// processImage opens, resizes, and saves the image
-func processImage(filePath string, params ResizeParams) (ImageProcessingResult, error) {
+// compressAndSaveImage compresses and saves the image
+func compressAndSaveImage(img image.Image, outputPath string) (int64, error) {
+	outputFile, err := os.Create(outputPath)
+	if err != nil {
+		return 0, err
+	}
+	defer outputFile.Close()
+
+	options := &jpeg.Options{Quality: 80}
+	if err := jpeg.Encode(outputFile, img, options); err != nil {
+		return 0, err
+	}
+
+	fileInfo, err := outputFile.Stat()
+	if err != nil {
+		return 0, err
+	}
+	fileSizeKB := fileInfo.Size() / 1024 // Convert bytes to KB
+
+	return fileSizeKB, nil
+}
+
+// processImage opens, resizes, compresses (if required) and saves the image
+func processImage(filePath string, params ResizeParams, outputDir string, size int) (ImageProcessingResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
 	}
 	defer file.Close()
 
-	img, format, err := image.Decode(file)
+	img, _, err := image.Decode(file)
 	if err != nil {
 		return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
 	}
 
 	resizedImg := resizeImage(img, params)
 
-	outputFile, err := os.Create(filePath)
+	outputPath := filepath.Join(outputDir, filepath.Base(filePath))
+
+	// Create the output directory if it doesn't exist
+	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
+		err := os.MkdirAll(outputDir, os.ModePerm)
+		if err != nil {
+			return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
+		}
+	}
+
+	// file size before compression
+	fileInfo, err := file.Stat()
 	if err != nil {
 		return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
-
 	}
-	defer outputFile.Close()
+	// Convert bytes to KB
+	fileSizeKB := fileInfo.Size() / 1024
 
-	switch format {
-	case "jpeg":
-		jpeg.Encode(outputFile, resizedImg, nil)
-	case "png":
-		png.Encode(outputFile, resizedImg)
-	case "gif":
-		gif.Encode(outputFile, resizedImg, nil)
-	default:
-		errorMsg := fmt.Errorf("unsupported image format")
-		return ImageProcessingResult{FilePath: filePath, Error: errorMsg.Error()}, errorMsg
+	if int(fileSizeKB) > size {
+		fileSizeKB, err = compressAndSaveImage(resizedImg, outputPath)
+		if err != nil {
+			return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
+		}
+	} else {
+		// Save the resized image without compression
+		outputFile, err := os.Create(outputPath)
+		if err != nil {
+			return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
+		}
+		defer outputFile.Close()
 
+		switch filepath.Ext(filePath) {
+		case ".jpg", ".jpeg":
+			jpeg.Encode(outputFile, resizedImg, nil)
+		case ".png":
+			png.Encode(outputFile, resizedImg)
+		case ".gif":
+			gif.Encode(outputFile, resizedImg, nil)
+		default:
+			errorMsg := fmt.Errorf("unsupported image format")
+			return ImageProcessingResult{FilePath: filePath, Error: errorMsg.Error()}, errorMsg
+		}
 	}
-	return ImageProcessingResult{FilePath: filePath}, nil
+
+	return ImageProcessingResult{FilePath: outputPath, FileSize: fileSizeKB}, nil
 }
 
 func main() {
@@ -79,11 +127,12 @@ func main() {
 	width := flag.String("width", "800", "Width to resize images to")
 	// default 600
 	height := flag.String("height", "600", "Height to resize images to")
-
+	// default 700
+	size := flag.Int("size", 700, "Maximum size of the image in KB")
 	flag.Parse()
 
 	if *path == "" {
-		fmt.Println("Usage: go run main.go -path [path_to_images] -width [width] -height [height]")
+		fmt.Println("Usage: go run main.go -path [path_to_images] -width [width] -height [height] -size [max_size_in_kb]")
 		return
 	}
 
@@ -109,7 +158,7 @@ func main() {
 			return nil
 		}
 		if !info.IsDir() {
-			result, err := processImage(path, params)
+			result, err := processImage(path, params, "processed_images", *size)
 			if err != nil {
 				failures = append(failures, result)
 				fmt.Printf("%sFailed to process image %s%s: %s%v%s\n", chalk.Red, chalk.Reset, path, chalk.Yellow, err, chalk.Reset)

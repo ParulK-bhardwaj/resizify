@@ -10,6 +10,8 @@ Resizify is a command-line utility designed to simplify the process of resizing 
 - Customizable Dimensions: You can specify the width and height to which you want to resize the images, providing flexibility for various use cases.
 - Supports Multiple Formats: Resizify supports popular image formats including JPEG, PNG, and GIF.
 - Error Handling: This provides feedback on successful and failed image processing, making it easy to identify any issues during resizing.
+- Preventing Data Loss: Saving the resized images in a new directory
+- Customizable Compression: Compress the size of the image.
 - Drag and Drop - Front End: (Future Feature) Users will be able to drag and drop images into a window for resizing
 
 ## Installation

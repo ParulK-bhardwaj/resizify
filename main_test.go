@@ -81,12 +81,13 @@ func TestProcessImagePredefined(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			_, err := processImage(test.filePath, test.params)
+			_, err := processImage(test.filePath, test.params, "processed_images_tests", 700)
 			if (err != nil) != test.expectedError {
 				t.Errorf("Test %s failed, expected error: %v, got: %v", test.name, test.expectedError, err)
 			}
 		})
 	}
+	defer os.RemoveAll("processed_images_tests") // clean up
 }
 
 func BenchmarkResizeImage(b *testing.B) {
@@ -113,9 +114,10 @@ func BenchmarkProcessImage(b *testing.B) {
 	params := ResizeParams{width: 100, height: 100}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_, err := processImage(tempFile.Name(), params)
+		_, err := processImage(tempFile.Name(), params, "processed_images_tests", 700)
 		if err != nil {
 			b.Fatalf("Failed to process image: %v", err)
 		}
 	}
+	defer os.RemoveAll("processed_images_tests") // clean up
 }
