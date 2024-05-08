@@ -8,11 +8,15 @@
     "error": "image: unknown format"
   },
   {
-    "file_path": "images/laal-maas-actual.jpg",
+    "file_path": "images/laal-maas.jpg",
     "error": "image: unknown format"
   },
   {
-    "file_path": "images/masor-tenga-actual.jpg",
+    "file_path": "images/litti-chokha.jpeg",
+    "error": "image: unknown format"
+  },
+  {
+    "file_path": "images/masor-tenga.jpg",
     "error": "image: unknown format"
   },
   {

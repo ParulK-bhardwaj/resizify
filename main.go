@@ -123,10 +123,10 @@ func processImage(filePath string, params ResizeParams, outputDir string, size i
 
 func main() {
 	path := flag.String("path", "", "Path to the images directory")
-	// default 800
-	width := flag.String("width", "800", "Width to resize images to")
 	// default 600
-	height := flag.String("height", "600", "Height to resize images to")
+	width := flag.String("width", "600", "Width to resize images to")
+	// default 800
+	height := flag.String("height", "800", "Height to resize images to")
 	// default 700
 	size := flag.Int("size", 700, "Maximum size of the image in KB")
 	flag.Parse()
