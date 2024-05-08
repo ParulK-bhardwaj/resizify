@@ -92,7 +92,7 @@ func processImage(filePath string, params ResizeParams, outputDir string, size i
 	// Convert bytes to KB
 	fileSizeKB := fileInfo.Size() / 1024
 
-	if int(fileSizeKB) > size {
+	if size > 0 && int(fileSizeKB) > size {
 		fileSizeKB, err = compressAndSaveImage(resizedImg, outputPath)
 		if err != nil {
 			return ImageProcessingResult{FilePath: filePath, Error: err.Error()}, err
@@ -128,7 +128,7 @@ func main() {
 	// default 800
 	height := flag.String("height", "800", "Height to resize images to")
 	// default 700
-	size := flag.Int("size", 700, "Maximum size of the image in KB")
+	size := flag.Int("size", 0, "Maximum size of the image in KB")
 	flag.Parse()
 
 	if *path == "" {
